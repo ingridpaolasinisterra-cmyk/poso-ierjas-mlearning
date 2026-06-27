@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jóvenes con Propósito — M-Learning IERJAS</title>
+<style>
+  :root {
+    --verde: #1B6B3A;
+    --verde-claro: #27AE60;
+    --tierra: #A0522D;
+    --dorado: #D4A017;
+    --crema: #FDF8F0;
+    --gris: #F5F5F0;
+    --texto: #1A1A1A;
+    --blanco: #FFFFFF;
+    --sombra: rgba(27,107,58,0.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--crema);
+    color: var(--texto);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--verde);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  }
+  .nav-brand { color: var(--blanco); font-weight: 700; font-size: 1.05rem; }
+  .nav-brand span { color: var(--dorado); }
+  .nav-links { display: flex; gap: 1.4rem; }
+  .nav-links a {
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    font-size: 0.85rem; font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--dorado); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(145deg, var(--verde) 0%, #0F3D22 60%, var(--tierra) 100%);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 6rem 1.5rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    background: rgba(212,160,23,0.25);
+    border: 1px solid var(--dorado);
+    color: var(--dorado);
+    padding: 0.35rem 1rem; border-radius: 50px;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+    margin-bottom: 1.5rem; text-transform: uppercase;
+  }
+  .hero h1 {
+    color: var(--blanco);
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
+    font-weight: 800; line-height: 1.15;
+    max-width: 720px; margin-bottom: 1rem;
+  }
+  .hero h1 em { color: var(--dorado); font-style: normal; }
+  .hero p {
+    color: rgba(255,255,255,0.8);
+    max-width: 560px; font-size: 1.05rem; margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--dorado); color: #1A1A1A;
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 700; text-decoration: none; font-size: 0.95rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,160,23,0.4); }
+  .btn-secondary {
+    background: rgba(255,255,255,0.12); color: var(--blanco);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    padding: 0.85rem 2rem; border-radius: 8px;
+    font-weight: 600; text-decoration: none; font-size: 0.95rem;
+    transition: background 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.22); }
+
+  .hero-datos {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+    justify-content: center; flex-wrap: wrap;
+  }
+  .hero-dato { text-align: center; }
+  .hero-dato strong { display: block; color: var(--dorado); font-size: 1.8rem; font-weight: 800; }
+  .hero-dato span { color: rgba(255,255,255,0.7); font-size: 0.78rem; }
+
+  /* SECCIÓN GENERAL */
+  section { padding: 5rem 1.5rem; }
+  .container { max-width: 1040px; margin: 0 auto; }
+  .seccion-label {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--verde-claro); margin-bottom: 0.5rem;
+  }
+  h2 { font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 800; line-height: 1.2; margin-bottom: 1rem; }
+  .intro { color: #555; max-width: 640px; font-size: 1rem; margin-bottom: 2.5rem; }
+
+  /* SOBRE */
+  #sobre { background: var(--gris); }
+  .sobre-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+  .sobre-texto p { margin-bottom: 1rem; color: #444; font-size: 0.97rem; }
+  .sobre-imagen {
+    background: linear-gradient(135deg, var(--verde) 0%, #0F3D22 100%);
+    border-radius: 16px; padding: 2.5rem 2rem; text-align: center; color: var(--blanco);
+  }
+  .sobre-imagen .icon-grande { font-size: 4rem; margin-bottom: 1rem; display: block; }
+  .sobre-imagen h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .sobre-imagen p { font-size: 0.88rem; opacity: 0.8; }
+
+  /* CONTENIDOS */
+  #contenidos { background: var(--crema); }
+  .contenidos-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;
+  }
+  .tarjeta {
+    background: var(--blanco); border-radius: 16px;
+    padding: 2rem 1.5rem; box-shadow: 0 4px 20px var(--sombra);
+    transition: transform 0.25s, box-shadow 0.25s;
+    display: flex; flex-direction: column;
+  }
+  .tarjeta:hover { transform: translateY(-4px); box-shadow: 0 8px 28px var(--sombra); }
+  .tarjeta-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.2rem; flex-shrink: 0;
+  }
+  .icon-video { background: #FEE2E2; }
+  .icon-audio { background: #D1FAE5; }
+  .icon-texto { background: #DBEAFE; }
+  .icon-inter { background: #EDE9FE; }
+  .icon-eval  { background: #FEF3C7; }
+  .tarjeta h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--texto); }
+  .tarjeta .herramienta {
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--verde-claro); margin-bottom: 0.6rem;
+  }
+  .tarjeta p { color: #666; font-size: 0.88rem; flex: 1; margin-bottom: 1.2rem; }
+  .btn-acceder {
+    display: inline-block; background: var(--verde); color: var(--blanco);
+    padding: 0.55rem 1.2rem; border-radius: 8px; font-size: 0.82rem;
+    font-weight: 600; text-decoration: none; text-align: center;
+    transition: background 0.2s; align-self: flex-start;
+  }
+  .btn-acceder:hover { background: var(--verde-claro); }
+
+  /* METODOLOGÍA */
+  #metodologia { background: var(--verde); color: var(--blanco); }
+  #metodologia h2 { color: var(--blanco); }
+  #metodologia .intro { color: rgba(255,255,255,0.75); }
+  .pasos-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;
+  }
+  .paso {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px; padding: 1.8rem 1.4rem;
+    transition: background 0.2s;
+  }
+  .paso:hover { background: rgba(255,255,255,0.14); }
+  .paso-num {
+    width: 36px; height: 36px; border-radius: 50%; background: var(--dorado);
+    color: #1A1A1A; font-weight: 800; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+  }
+  .paso h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--blanco); }
+  .paso p { font-size: 0.83rem; color: rgba(255,255,255,0.72); }
+
+  /* ACCESO */
+  #acceso { background: var(--gris); }
+  .acceso-tabla { width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 18px var(--sombra); }
+  .acceso-tabla thead { background: var(--verde); color: var(--blanco); }
+  .acceso-tabla th { padding: 1rem 1.2rem; text-align: left; font-size: 0.82rem; font-weight: 600; }
+  .acceso-tabla td { padding: 0.9rem 1.2rem; border-bottom: 1px solid #E8E8E0; font-size: 0.88rem; }
+  .acceso-tabla tr:last-child td { border-bottom: none; }
+  .acceso-tabla tr:nth-child(even) { background: rgba(27,107,58,0.04); }
+  .tag {
+    display: inline-block; padding: 0.2rem 0.7rem; border-radius: 50px;
+    font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  }
+  .tag-v { background: #FEE2E2; color: #991B1B; }
+  .tag-a { background: #D1FAE5; color: #065F46; }
+  .tag-t { background: #DBEAFE; color: #1E40AF; }
+  .tag-i { background: #EDE9FE; color: #5B21B6; }
+  .tag-e { background: #FEF3C7; color: #92400E; }
+  .acceso-tabla a { color: var(--verde); font-weight: 600; text-decoration: none; word-break: break-all; }
+  .acceso-tabla a:hover { text-decoration: underline; }
+
+  /* FOOTER */
+  footer {
+    background: #0F3D22; color: rgba(255,255,255,0.7);
+    text-align: center; padding: 2.5rem 1.5rem;
+    font-size: 0.82rem;
+  }
+  footer strong { color: var(--dorado); }
+  footer p + p { margin-top: 0.4rem; }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    .nav-links { display: none; }
+    .sobre-grid { grid-template-columns: 1fr; }
+    .sobre-imagen { order: -1; }
+    .acceso-tabla th:nth-child(4), .acceso-tabla td:nth-child(4) { display: none; }
+    .hero-datos { gap: 1.5rem; }
+  }
+
+  /* scroll reveal simple */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand"><span>🌿</span> POSO — <span>IERJAS</span></div>
+  <div class="nav-links">
+    <a href="#sobre">Sobre el proyecto</a>
+    <a href="#contenidos">Contenidos</a>
+    <a href="#metodologia">Metodología</a>
+    <a href="#acceso">Acceder</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">📱 M-Learning · Orientación Vocacional · Putumayo</div>
+  <h1>Jóvenes con <em>Propósito</em>,<br>Mirando Hacia el Futuro</h1>
+  <p>Estrategia de aprendizaje móvil para la orientación vocacional intercultural de los estudiantes de la IERJAS, El Placer, Valle del Guamuez.</p>
+  <div class="hero-btns">
+    <a href="#contenidos" class="btn-primary">Ver contenidos 🎯</a>
+    <a href="#acceso" class="btn-secondary">Acceder ahora</a>
+  </div>
+  <div class="hero-datos">
+    <div class="hero-dato"><strong>5</strong><span>Microcontenidos</span></div>
+    <div class="hero-dato"><strong>40+</strong><span>Estudiantes</span></div>
+    <div class="hero-dato"><strong>100%</strong><span>Móvil y accesible</span></div>
+    <div class="hero-dato"><strong>2026</strong><span>Segundo ciclo POSO</span></div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="container">
+    <div class="sobre-grid reveal">
+      <div class="sobre-texto">
+        <p class="seccion-label">¿De qué trata?</p>
+        <h2>Orientación vocacional diseñada para el territorio amazónico</h2>
+        <p>La Institución Educativa Rural José Asunción Silva (IERJAS), ubicada en El Placer, Putumayo, ha desarrollado una estrategia de m-learning para acercar a sus estudiantes de grado 10.° y 11.° a un proceso de orientación vocacional que reconoce sus identidades culturales, sus saberes comunitarios y las oportunidades reales del territorio.</p>
+        <p>Cinco microcontenidos digitales —video, podcast, texto interactivo, actividad y evaluación— fueron diseñados para funcionar desde un smartphone con datos 3G, respondiendo a las condiciones reales de conectividad de las comunidades rurales del Putumayo.</p>
+        <p><strong>Contexto:</strong> El 91% de los egresados históricos de la IERJAS se dedicó a oficios varios. El POSO es la primera respuesta institucional estructurada para ampliar ese horizonte.</p>
+      </div>
+      <div class="sobre-imagen reveal">
+        <span class="icon-grande">🌱</span>
+        <h3>Plan de Orientación Socio-Ocupacional</h3>
+        <p>«Jóvenes con Propósito, Mirando Hacia el Futuro»</p>
+        <br>
+        <p><strong>Institución:</strong> IERJAS, El Placer, Putumayo</p>
+        <p><strong>Grados:</strong> 10.° y 11.°</p>
+        <p><strong>Docentes:</strong> Alexis Yuri Chaves B. · William E. Ruano</p>
+        <p><strong>Línea:</strong> Pedagogía y diversidad</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENIDOS -->
+<section id="contenidos">
+  <div class="container">
+    <p class="seccion-label reveal">Recursos digitales</p>
+    <h2 class="reveal">Cinco microcontenidos para aprender desde el celular</h2>
+    <p class="intro reveal">Cada recurso fue diseñado para la realidad del Putumayo: breve, descargable y accesible sin necesidad de instalar aplicaciones. Elige por dónde empezar.</p>
+    <div class="contenidos-grid">
+
+      <div class="tarjeta reveal">
+        <div class="tarjeta-icon icon-video">🎬</div>
+        <div class="herramienta">Video · Renderforest</div>
+        <h3>¿Quién soy y qué quiero ser?</h3>
+        <p>Video animado de 2 min 30 s que invita a reflexionar sobre la identidad vocacional desde la historia de vida y la cultura amazónica del Putumayo. Narrado con voces generadas por IA.</p>
+        <a href="https://www.renderforest.com/es/share/poso-ierjas-2026" target="_blank" class="btn-acceder">Ver video ▶</a>
+      </div>
+
+      <div class="tarjeta reveal">
+        <div class="tarjeta-icon icon-audio">🎙️</div>
+        <div class="herramienta">Podcast · SoundCloud</div>
+        <h3>Saberes que cuentan</h3>
+        <p>Podcast de máximo 4 minutos. Una conversación entre un sabedor comunitario del Putumayo y un egresado del SENA que muestra cómo el conocimiento local puede articularse con la formación técnica.</p>
+        <a href="https://soundcloud.com/poso-ierjas/saberes-que-cuentan-2026" target="_blank" class="btn-acceder">Escuchar 🎧</a>
+      </div>
+
+      <div class="tarjeta reveal">
+        <div class="tarjeta-icon icon-texto">📄</div>
+        <div class="herramienta">Texto · Google Docs</div>
+        <h3>Mi mapa vocacional</h3>
+        <p>Guía de trabajo personal de 2 páginas con imágenes. El estudiante responde preguntas de autoconocimiento y registra los saberes de su comunidad como punto de partida del proyecto de vida.</p>
+        <a href="https://docs.google.com/document/d/poso-ierjas-mapa-vocacional" target="_blank" class="btn-acceder">Abrir guía 📋</a>
+      </div>
+
+      <div class="tarjeta reveal">
+        <div class="tarjeta-icon icon-inter">🎮</div>
+        <div class="herramienta">Actividad · Educaplay</div>
+        <h3>Crucigrama vocacional amazónico</h3>
+        <p>Actividad interactiva con términos clave de orientación vocacional e interculturalidad amazónica. Sin instalación, funciona directamente desde el navegador del celular.</p>
+        <a href="https://www.educaplay.com/game/poso-ierjas-crucigrama" target="_blank" class="btn-acceder">Jugar ahora 🧩</a>
+      </div>
+
+      <div class="tarjeta reveal">
+        <div class="tarjeta-icon icon-eval">✅</div>
+        <div class="herramienta">Evaluación · Quizziz</div>
+        <h3>¿Cuánto aprendiste?</h3>
+        <p>10 preguntas de opción múltiple sobre los contenidos de la secuencia. Gamificado con retroalimentación inmediata y accesible desde cualquier dispositivo móvil.</p>
+        <a href="https://quizizz.com/join?gc=POSO2026" target="_blank" class="btn-acceder">Iniciar quiz 🏆</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- METODOLOGÍA -->
+<section id="metodologia">
+  <div class="container">
+    <p class="seccion-label" style="color:var(--dorado)">¿Cómo funciona?</p>
+    <h2 class="reveal">Secuencia metodológica de aprendizaje móvil</h2>
+    <p class="intro reveal">Cada microcontenido cumple una función dentro de la secuencia. No es necesario hacerlos en orden, pero seguirla potencia el aprendizaje.</p>
+    <div class="pasos-grid">
+      <div class="paso reveal">
+        <div class="paso-num">1</div>
+        <h3>Conoce quién eres</h3>
+        <p>Comienza con el video y la guía «Mi mapa vocacional» para explorar tu historia de vida, tus habilidades e intereses desde tu identidad cultural.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">2</div>
+        <h3>Escucha tu territorio</h3>
+        <p>El podcast conecta los saberes de tu comunidad amazónica con las oportunidades de formación técnica y profesional del Putumayo.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">3</div>
+        <h3>Practica y consolida</h3>
+        <p>El crucigrama interactivo de Educaplay te ayuda a apropiar los conceptos clave de orientación vocacional de manera lúdica.</p>
+      </div>
+      <div class="paso reveal">
+        <div class="paso-num">4</div>
+        <h3>Demuestra lo aprendido</h3>
+        <p>El cuestionario de Quizziz evalúa tu comprensión con 10 preguntas y te da retroalimentación inmediata para seguir mejorando.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESO DIRECTO -->
+<section id="acceso">
+  <div class="container">
+    <p class="seccion-label reveal">Links de acceso</p>
+    <h2 class="reveal">Todos los recursos en un solo lugar</h2>
+    <p class="intro reveal">Accede directamente a cada contenido desde tu celular. Todos los enlaces son públicos y no requieren cuenta ni instalación.</p>
+    <div class="reveal" style="overflow-x:auto">
+      <table class="acceso-tabla">
+        <thead>
+          <tr>
+            <th>Tipo</th>
+            <th>Contenido</th>
+            <th>Herramienta</th>
+            <th>Duración</th>
+            <th>Link de acceso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag tag-v">Video</span></td>
+            <td>¿Quién soy y qué quiero ser?</td>
+            <td>Renderforest / YouTube</td>
+            <td>2 min 30 s</td>
+            <td><a href="https://www.renderforest.com/es/share/poso-ierjas-2026" target="_blank">renderforest.com/poso-ierjas ↗</a></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-a">Audio</span></td>
+            <td>Saberes que cuentan</td>
+            <td>SoundCloud</td>
+            <td>Máx. 4 min</td>
+            <td><a href="https://soundcloud.com/poso-ierjas/saberes-que-cuentan-2026" target="_blank">soundcloud.com/poso-ierjas ↗</a></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-t">Texto</span></td>
+            <td>Mi mapa vocacional</td>
+            <td>Google Docs</td>
+            <td>2 páginas</td>
+            <td><a href="https://docs.google.com/document/d/poso-ierjas-mapa-vocacional" target="_blank">docs.google.com/mapa-vocacional ↗</a></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-i">Actividad</span></td>
+            <td>Crucigrama vocacional amazónico</td>
+            <td>Educaplay</td>
+            <td>10-15 min</td>
+            <td><a href="https://www.educaplay.com/game/poso-ierjas-crucigrama" target="_blank">educaplay.com/poso-ierjas ↗</a></td>
+          </tr>
+          <tr>
+            <td><span class="tag tag-e">Quiz</span></td>
+            <td>Evaluación final — 10 preguntas</td>
+            <td>Quizziz</td>
+            <td>10 min</td>
+            <td><a href="https://quizizz.com/join?gc=POSO2026" target="_blank">quizizz.com — Código: POSO2026 ↗</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p><strong>POSO — Jóvenes con Propósito, Mirando Hacia el Futuro</strong></p>
+  <p>Institución Educativa Rural José Asunción Silva · El Placer, Valle del Guamuez, Putumayo</p>
+  <p>Alexis Yuri Chaves Burbano · William Enrique Ruano — Maestría en Educación, Corporación Universitaria Iberoamericana · 2026</p>
+  <p style="margin-top:1rem;font-size:0.75rem;opacity:0.55">Electiva IV — Mobile Learning · Actividad 4: Implementación en plataforma m-learning</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth nav link highlight
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const io2 = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting) {
+        navLinks.forEach(a => {
+          a.style.color = a.getAttribute('href') === '#'+e.target.id
+            ? 'var(--dorado)' : 'rgba(255,255,255,0.85)';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => io2.observe(s));
+</script>
+</body>
+</html>
